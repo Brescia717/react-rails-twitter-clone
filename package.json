@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Paul Brescia",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-core": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "webpack": "latest"
+  }
 }
