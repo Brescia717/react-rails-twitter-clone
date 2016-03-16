@@ -72,6 +72,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This file uses jsx syntax
 	
 	
+	var mockTweets = [{ id: 1, name: 'Paul Brescia', body: 'My #FirstTweet' }, { id: 2, name: 'Paul Brescia', body: 'My #SecondTweet' }, { id: 3, name: 'Paul Brescia', body: 'My #ThirdTweet' }];
+	
 	var Main = function (_React$Component) {
 	  _inherits(Main, _React$Component);
 	
@@ -88,7 +90,7 @@
 	        "div",
 	        { className: "container" },
 	        React.createElement(_TweetBox2.default, null),
-	        React.createElement(_TweetsList2.default, null)
+	        React.createElement(_TweetsList2.default, { tweets: mockTweets })
 	      );
 	    }
 	  }]);
@@ -219,7 +221,7 @@
 /*!*******************************************************!*\
   !*** ./app/assets/frontend/components/TweetsList.jsx ***!
   \*******************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -227,7 +229,15 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _Tweet = __webpack_require__(/*! ./Tweet */ 4);
+	
+	var _Tweet2 = _interopRequireDefault(_Tweet);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -247,69 +257,16 @@
 	  _createClass(TweetsList, [{
 	    key: "render",
 	    value: function render() {
+	      var tweets = this.props.tweets.map(function (tweet) {
+	        return React.createElement(_Tweet2.default, _extends({ key: tweet.id }, tweet));
+	      });
 	      return React.createElement(
 	        "div",
 	        null,
 	        React.createElement(
 	          "ul",
 	          { className: "collection" },
-	          React.createElement(
-	            "li",
-	            { className: "collection-item avatar" },
-	            React.createElement(
-	              "i",
-	              { className: "material-icons circle" },
-	              "person_pin"
-	            ),
-	            React.createElement(
-	              "span",
-	              { className: "title" },
-	              "Paul Brescia"
-	            ),
-	            React.createElement(
-	              "p",
-	              null,
-	              "My #FirstTweet"
-	            )
-	          ),
-	          React.createElement(
-	            "li",
-	            { className: "collection-item avatar" },
-	            React.createElement(
-	              "i",
-	              { className: "material-icons circle" },
-	              "person_pin"
-	            ),
-	            React.createElement(
-	              "span",
-	              { className: "title" },
-	              "Paul Brescia"
-	            ),
-	            React.createElement(
-	              "p",
-	              null,
-	              "My #SecondTweet"
-	            )
-	          ),
-	          React.createElement(
-	            "li",
-	            { className: "collection-item avatar" },
-	            React.createElement(
-	              "i",
-	              { className: "material-icons circle" },
-	              "person_pin"
-	            ),
-	            React.createElement(
-	              "span",
-	              { className: "title" },
-	              "Paul Brescia"
-	            ),
-	            React.createElement(
-	              "p",
-	              null,
-	              "My #ThirdTweet"
-	            )
-	          )
+	          tweets
 	        )
 	      );
 	    }
@@ -319,6 +276,66 @@
 	}(React.Component);
 	
 	exports.default = TweetsList;
+
+/***/ },
+/* 4 */
+/*!**************************************************!*\
+  !*** ./app/assets/frontend/components/Tweet.jsx ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Tweets = function (_React$Component) {
+	  _inherits(Tweets, _React$Component);
+	
+	  function Tweets() {
+	    _classCallCheck(this, Tweets);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Tweets).apply(this, arguments));
+	  }
+	
+	  _createClass(Tweets, [{
+	    key: "render",
+	    value: function render() {
+	      return React.createElement(
+	        "li",
+	        { className: "collection-item avatar" },
+	        React.createElement(
+	          "i",
+	          { className: "material-icons circle" },
+	          "person_pin"
+	        ),
+	        React.createElement(
+	          "span",
+	          { className: "title" },
+	          this.props.name
+	        ),
+	        React.createElement(
+	          "p",
+	          null,
+	          this.props.body
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Tweets;
+	}(React.Component);
+	
+	exports.default = Tweets;
 
 /***/ }
 /******/ ]);
