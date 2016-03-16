@@ -1,3 +1,5 @@
+// This file uses jsx syntax
+
 class Main extends React.Component {
   render() {
     return (
