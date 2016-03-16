@@ -1,10 +1,11 @@
 // This file uses jsx syntax
 import Greet from './greet';
+import TweetBox from "./components/TweetBox"
 
 class Main extends React.Component {
   render() {
     return (
-      <Greet />
+      <TweetBox />
     );
   }
 }
