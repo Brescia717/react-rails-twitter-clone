@@ -14,7 +14,8 @@
 
   <div class="right">
     <% if user_signed_in? %>
-      Welcome <%= current_user.email %>
+      Welcome
+        <%= link_to current_user.display_name, "/profile" %>,
       <%= link_to "logout", destroy_user_session_path, method: :delete %>
     <% else %>
       Please

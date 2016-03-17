@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'profile/index'
+  get 'profile' => 'profile#index'
+  patch 'profile' => 'profile#update'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,2 +1,20 @@
-<h1>Profile#index</h1>
-<p>Find me in app/views/profile/index.html.erb</p>
+<h2>Update Profile</h2>
+<%= form_for @user, url: "/profile" do |f| %>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field "first_name" %>
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <%= f.text_field "last_name" %>
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn right">Save</button>
+      </div>
+    </form>
+  </div>
+<% end %>
