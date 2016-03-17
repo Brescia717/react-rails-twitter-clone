@@ -3,8 +3,6 @@ import Greet from './greet';
 import TweetBox from "./components/TweetBox"
 import TweetsList from "./components/TweetsList"
 
-
-
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -27,10 +25,10 @@ class Main extends React.Component {
 }
 
 let documentReady = () => {
-  React.render(
-    <Main />,
-    document.getElementById('react')
-  );
+  let reactNode = document.getElementById('react');
+  if (reactNode) {
+    React.render(<Main />, reactNode);
+  }
 };
 
 $(documentReady);
