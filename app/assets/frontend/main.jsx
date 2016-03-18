@@ -9,10 +9,20 @@ class Main extends React.Component {
     this.state = { tweetsList: [] };
   }
   addTweet(tweetToAdd) {
-    let newTweetsList = this.state.tweetsList;
-    newTweetsList.unshift({ id: Date.now(), name: 'Guest', body: tweetToAdd });
+    // Tweet is added to the backend, before changes are made on the frontend.
+    $.post("/tweets", { body: tweetToAdd })
+    .success( savedTweet => {
+      let newTweetsList = this.state.tweetsList;
+      newTweetsList.unshift(savedTweet);
 
-    this.setState({ tweetsList: newTweetsList });
+      this.setState({ tweetsList: newTweetsList });
+    })
+    .error( error => console.log(error));
+  }
+  componentDidMount() {
+    $.ajax("/tweets")
+    .success(data => this.setState({ tweetsList: data }))
+    .error(error => console.log(error));
   }
   render() {
     return (
