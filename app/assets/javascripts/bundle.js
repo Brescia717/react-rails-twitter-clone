@@ -361,11 +361,7 @@
 	      return React.createElement(
 	        "li",
 	        { className: "collection-item avatar" },
-	        React.createElement(
-	          "i",
-	          { className: "material-icons circle" },
-	          "person_pin"
-	        ),
+	        React.createElement("img", { src: this.props.gravatar, className: "circle" }),
 	        React.createElement(
 	          "span",
 	          { className: "title" },
