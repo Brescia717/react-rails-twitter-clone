@@ -51,19 +51,19 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _TweetBox = __webpack_require__(/*! ./components/TweetBox */ 2);
+	var _TweetBox = __webpack_require__(/*! ./components/TweetBox */ 1);
 	
 	var _TweetBox2 = _interopRequireDefault(_TweetBox);
 	
-	var _TweetsList = __webpack_require__(/*! ./components/TweetsList */ 3);
+	var _TweetsList = __webpack_require__(/*! ./components/TweetsList */ 2);
 	
 	var _TweetsList2 = _interopRequireDefault(_TweetsList);
 	
-	var _TweetStore = __webpack_require__(/*! ./stores/TweetStore */ 7);
+	var _TweetStore = __webpack_require__(/*! ./stores/TweetStore */ 4);
 	
 	var _TweetStore2 = _interopRequireDefault(_TweetStore);
 	
-	var _TweetActions = __webpack_require__(/*! ./actions/TweetActions */ 5);
+	var _TweetActions = __webpack_require__(/*! ./actions/TweetActions */ 12);
 	
 	var _TweetActions2 = _interopRequireDefault(_TweetActions);
 	
@@ -148,8 +148,7 @@
 	$(documentReady);
 
 /***/ },
-/* 1 */,
-/* 2 */
+/* 1 */
 /*!*****************************************************!*\
   !*** ./app/assets/frontend/components/TweetBox.jsx ***!
   \*****************************************************/
@@ -220,7 +219,7 @@
 	exports.default = TweetBox;
 
 /***/ },
-/* 3 */
+/* 2 */
 /*!*******************************************************!*\
   !*** ./app/assets/frontend/components/TweetsList.jsx ***!
   \*******************************************************/
@@ -236,7 +235,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Tweet = __webpack_require__(/*! ./Tweet */ 4);
+	var _Tweet = __webpack_require__(/*! ./Tweet */ 3);
 	
 	var _Tweet2 = _interopRequireDefault(_Tweet);
 	
@@ -281,7 +280,7 @@
 	exports.default = TweetsList;
 
 /***/ },
-/* 4 */
+/* 3 */
 /*!**************************************************!*\
   !*** ./app/assets/frontend/components/Tweet.jsx ***!
   \**************************************************/
@@ -342,63 +341,7 @@
 	exports.default = Tweets;
 
 /***/ },
-/* 5 */
-/*!******************************************************!*\
-  !*** ./app/assets/frontend/actions/TweetActions.jsx ***!
-  \******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _API = __webpack_require__(/*! ../API */ 6);
-	
-	var _API2 = _interopRequireDefault(_API);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  getAllTweets: function getAllTweets() {
-	    console.log(1, "TweetActions");
-	    _API2.default.getAllTweets();
-	  }
-	};
-
-/***/ },
-/* 6 */
-/*!*************************************!*\
-  !*** ./app/assets/frontend/API.jsx ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _ServerActions = __webpack_require__(/*! ./actions/ServerActions */ 16);
-	
-	var _ServerActions2 = _interopRequireDefault(_ServerActions);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  getAllTweets: function getAllTweets() {
-	    console.log(2, "API.getAllTweets");
-	    $.get("/tweets").success(function (rawTweets) {
-	      return _ServerActions2.default.receivedTweets(rawTweets);
-	    }).error(function (error) {
-	      return console.log(error);
-	    });
-	  }
-	};
-
-/***/ },
-/* 7 */
+/* 4 */
 /*!***************************************************!*\
   !*** ./app/assets/frontend/stores/TweetStore.jsx ***!
   \***************************************************/
@@ -412,15 +355,15 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 8);
+	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 5);
 	
 	var _dispatcher2 = _interopRequireDefault(_dispatcher);
 	
-	var _constants = __webpack_require__(/*! ../constants */ 13);
+	var _constants = __webpack_require__(/*! ../constants */ 10);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _events = __webpack_require__(/*! events */ 17);
+	var _events = __webpack_require__(/*! events */ 11);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -488,7 +431,7 @@
 	exports.default = TweetStore;
 
 /***/ },
-/* 8 */
+/* 5 */
 /*!********************************************!*\
   !*** ./app/assets/frontend/dispatcher.jsx ***!
   \********************************************/
@@ -500,7 +443,7 @@
 	  value: true
 	});
 	
-	var _flux = __webpack_require__(/*! flux */ 9);
+	var _flux = __webpack_require__(/*! flux */ 6);
 	
 	var _flux2 = _interopRequireDefault(_flux);
 	
@@ -509,7 +452,7 @@
 	exports.default = new _flux2.default.Dispatcher();
 
 /***/ },
-/* 9 */
+/* 6 */
 /*!*************************!*\
   !*** ./~/flux/index.js ***!
   \*************************/
@@ -524,11 +467,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 10);
+	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 7);
 
 
 /***/ },
-/* 10 */
+/* 7 */
 /*!**********************************!*\
   !*** ./~/flux/lib/Dispatcher.js ***!
   \**********************************/
@@ -553,7 +496,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 12);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 9);
 	
 	var _prefix = 'ID_';
 	
@@ -765,10 +708,10 @@
 	})();
 	
 	module.exports = Dispatcher;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 8)))
 
 /***/ },
-/* 11 */
+/* 8 */
 /*!******************************!*\
   !*** ./~/process/browser.js ***!
   \******************************/
@@ -868,7 +811,7 @@
 
 
 /***/ },
-/* 12 */
+/* 9 */
 /*!*********************************!*\
   !*** ./~/fbjs/lib/invariant.js ***!
   \*********************************/
@@ -923,10 +866,10 @@
 	};
 	
 	module.exports = invariant;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 11)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 8)))
 
 /***/ },
-/* 13 */
+/* 10 */
 /*!*******************************************!*\
   !*** ./app/assets/frontend/constants.jsx ***!
   \*******************************************/
@@ -944,42 +887,7 @@
 	};
 
 /***/ },
-/* 14 */,
-/* 15 */,
-/* 16 */
-/*!*******************************************************!*\
-  !*** ./app/assets/frontend/actions/ServerActions.jsx ***!
-  \*******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 8);
-	
-	var _dispatcher2 = _interopRequireDefault(_dispatcher);
-	
-	var _constants = __webpack_require__(/*! ../constants */ 13);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  receivedTweets: function receivedTweets(rawTweets) {
-	    console.log(3, "ServerActions.receivedTweets");
-	    _dispatcher2.default.dispatch({
-	      actionType: _constants2.default.RECEIVED_TWEETS,
-	      rawTweets: rawTweets // shorthand for `rawTweets: rawTweets`; ES6 syntax
-	    });
-	  }
-	};
-
-/***/ },
-/* 17 */
+/* 11 */
 /*!****************************!*\
   !*** ./~/events/events.js ***!
   \****************************/
@@ -1284,6 +1192,95 @@
 	  return arg === void 0;
 	}
 
+
+/***/ },
+/* 12 */
+/*!******************************************************!*\
+  !*** ./app/assets/frontend/actions/TweetActions.jsx ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _API = __webpack_require__(/*! ../API */ 13);
+	
+	var _API2 = _interopRequireDefault(_API);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  getAllTweets: function getAllTweets() {
+	    console.log(1, "TweetActions");
+	    _API2.default.getAllTweets();
+	  }
+	};
+
+/***/ },
+/* 13 */
+/*!*************************************!*\
+  !*** ./app/assets/frontend/API.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _ServerActions = __webpack_require__(/*! ./actions/ServerActions */ 14);
+	
+	var _ServerActions2 = _interopRequireDefault(_ServerActions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  getAllTweets: function getAllTweets() {
+	    console.log(2, "API.getAllTweets");
+	    $.get("/tweets").success(function (rawTweets) {
+	      return _ServerActions2.default.receivedTweets(rawTweets);
+	    }).error(function (error) {
+	      return console.log(error);
+	    });
+	  }
+	};
+
+/***/ },
+/* 14 */
+/*!*******************************************************!*\
+  !*** ./app/assets/frontend/actions/ServerActions.jsx ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 5);
+	
+	var _dispatcher2 = _interopRequireDefault(_dispatcher);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 10);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  receivedTweets: function receivedTweets(rawTweets) {
+	    console.log(3, "ServerActions.receivedTweets");
+	    _dispatcher2.default.dispatch({
+	      actionType: _constants2.default.RECEIVED_TWEETS,
+	      rawTweets: rawTweets // shorthand for `rawTweets: rawTweets`; ES6 syntax
+	    });
+	  }
+	};
 
 /***/ }
 /******/ ]);
