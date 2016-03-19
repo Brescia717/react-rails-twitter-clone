@@ -14,17 +14,6 @@ class Main extends React.Component {
     this.state = getAppState();
     this._onChange = this._onChange.bind(this);
   }
-  addTweet(tweetToAdd) {
-    // Tweet is added to the backend, before changes are made on the frontend.
-    // $.post("/tweets", { body: tweetToAdd })
-    // .success( savedTweet => {
-    //   let newTweetsList = this.state.tweetsList;
-    //   newTweetsList.unshift(savedTweet);
-    //
-    //   this.setState(this.formattedTweets(newTweetsList));
-    // })
-    // .error( error => console.log(error));
-  }
   componentDidMount() {
     TweetActions.getAllTweets();
     TweetStore.addChangeListener(this._onChange);
@@ -33,13 +22,12 @@ class Main extends React.Component {
     TweetStore.removeChangeListener(this._onChange);
   }
   _onChange() {
-    console.log(5, "Main._onChange");
     this.setState(getAppState());
   }
   render() {
     return (
       <div className="container">
-        <TweetBox sendTweet={ this.addTweet.bind(this) }/>
+        <TweetBox />
         <TweetsList tweets={ this.state.tweetsList }/>
       </div>
     );
