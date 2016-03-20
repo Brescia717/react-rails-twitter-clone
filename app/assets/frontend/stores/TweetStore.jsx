@@ -9,8 +9,8 @@ class TweetEventEmitter extends AppEventEmitter {
     return _tweets.map(tweet => {
       tweet.formattedDate = moment(tweet.created_at).fromNow();
       return tweet;
-    })
-    return _tweets;
+    });
+    // return _tweets;
   }
 }
 

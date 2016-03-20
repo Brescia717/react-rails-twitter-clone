@@ -268,6 +268,13 @@
 	    }).error(function (error) {
 	      return console.log(error);
 	    });
+	  },
+	  getAllUsers: function getAllUsers() {
+	    $.get("/followers/random").success(function (rawUsers) {
+	      return _ServerActions2.default.receivedUsers(rawUsers);
+	    }).error(function (error) {
+	      return console.log(error);
+	    });
 	  }
 	};
 
@@ -305,6 +312,12 @@
 	    _dispatcher2.default.dispatch({
 	      actionType: _constants2.default.RECEIVED_ONE_TWEET,
 	      rawTweet: rawTweet
+	    });
+	  },
+	  receivedUsers: function receivedUsers(rawUsers) {
+	    _dispatcher2.default.dispatch({
+	      actionType: _constants2.default.RECEIVED_USERS,
+	      rawUsers: rawUsers
 	    });
 	  }
 	};
@@ -762,7 +775,8 @@
 	exports.default = {
 	
 	  RECEIVED_TWEETS: 'RECEIVED_TWEETS',
-	  RECEIVED_ONE_TWEET: 'RECEIVED_ONE_TWEET'
+	  RECEIVED_ONE_TWEET: 'RECEIVED_ONE_TWEET',
+	  RECEIVED_USERS: 'RECEIVED_USERS'
 	
 	};
 
@@ -951,7 +965,7 @@
 	        tweet.formattedDate = moment(tweet.created_at).fromNow();
 	        return tweet;
 	      });
-	      return _tweets;
+	      // return _tweets;
 	    }
 	  }]);
 	
@@ -26615,6 +26629,12 @@
 	
 	var _UserStore2 = _interopRequireDefault(_UserStore);
 	
+	var _UserActions = __webpack_require__(/*! ../actions/UserActions */ 237);
+	
+	var _UserActions2 = _interopRequireDefault(_UserActions);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 173);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26636,10 +26656,27 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Follow).call(this, props));
 	
 	    _this.state = getAppState();
+	    _this._onChange = _this._onChange.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Follow, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      _UserActions2.default.getAllUsers();
+	      _UserStore2.default.addChangeListener(this._onChange);
+	    }
+	  }, {
+	    key: "componentWillUnmount",
+	    value: function componentWillUnmount() {
+	      _UserStore2.default.removeChangeListener(this._onChange);
+	    }
+	  }, {
+	    key: "_onChange",
+	    value: function _onChange() {
+	      this.setState(getAppState());
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var users = this.state.users.map(function (user) {
@@ -26666,6 +26703,11 @@
 	          "ul",
 	          { className: "collection" },
 	          users
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: "/" },
+	          "Back"
 	        )
 	      );
 	    }
@@ -27014,7 +27056,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _users = [{ id: 1, name: "DHH" }, { id: 2, name: "JW" }];
+	var _users = [];
 	
 	var UserEventEmitter = function (_AppEventEmitter) {
 	  _inherits(UserEventEmitter, _AppEventEmitter);
@@ -27039,12 +27081,41 @@
 	
 	_dispatcher2.default.register(function (action) {
 	  switch (action.actionType) {
+	    case _constants2.default.RECEIVED_USERS:
+	      _users = action.rawUsers;
+	      UserStore.emitChange();
+	      break;
 	    default:
 	    // no op
 	  }
 	});
 	
 	exports.default = UserStore;
+
+/***/ },
+/* 237 */
+/*!*****************************************************!*\
+  !*** ./app/assets/frontend/actions/UserActions.jsx ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _API = __webpack_require__(/*! ../API */ 3);
+	
+	var _API2 = _interopRequireDefault(_API);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  getAllUsers: function getAllUsers() {
+	    _API2.default.getAllUsers();
+	  }
+	};
 
 /***/ }
 /******/ ]);

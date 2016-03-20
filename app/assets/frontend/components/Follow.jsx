@@ -1,5 +1,7 @@
 import React from "react"
 import UserStore from "../stores/UserStore"
+import UserActions from "../actions/UserActions"
+import { Link } from "react-router"
 
 let getAppState = () => {
   return { users: UserStore.getAll() };
@@ -9,6 +11,17 @@ export default class Follow extends React.Component {
   constructor(props) {
     super(props);
     this.state = getAppState();
+    this._onChange = this._onChange.bind(this);
+  }
+  componentDidMount() {
+    UserActions.getAllUsers();
+    UserStore.addChangeListener(this._onChange);
+  }
+  componentWillUnmount() {
+    UserStore.removeChangeListener(this._onChange);
+  }
+  _onChange() {
+    this.setState(getAppState());
   }
   render() {
     let users = this.state.users.map( user => {
@@ -25,6 +38,7 @@ export default class Follow extends React.Component {
         <ul className="collection">
           {users}
         </ul>
+        <Link to="/">Back</Link>
       </div>
     );
   }
