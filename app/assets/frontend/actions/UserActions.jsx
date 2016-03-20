@@ -4,6 +4,9 @@ export default {
 
   getAllUsers() {
     API.getAllUsers();
+  },
+  followUser(userId) {
+    API.followUser(userId);
   }
 
 }
